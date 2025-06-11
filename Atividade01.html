@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beleza Azul</title>
+  <style>
+    :root {
+      --primary: #9AD6F2;
+      --white: #FFFFFF;
+      --text: #333333;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.6;}
+    header{background:var(--primary);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+    header h1,header nav a{color:var(--white);}
+    header nav a{margin-left:1rem;text-decoration:none;}
+    header nav a:hover{text-decoration:underline;}
+    .hero{background:var(--primary);color:var(--white);text-align:center;padding:4rem 2rem;}
+    .hero button{background:var(--white);color:var(--primary);border:none;padding:.75rem 1.5rem;cursor:pointer;border-radius:4px;transition:.3s;}
+    .hero button:hover{opacity:0.9;}
+    #filters{padding:1rem 2rem;background:#f0f8ff;}
+    #produtos{padding:2rem;background:var(--white);}
+    .produtos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;margin-top:1rem;}
+    .card{background:var(--primary);color:var(--white);border-radius:8px;padding:1rem;display:flex;flex-direction:column;align-items:center;transition:.2s;}
+    .card:hover{transform:translateY(-5px);box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+    .card img{width:100%;border-radius:4px;margin-bottom:.5rem;}
+    .card h3{margin:.5rem 0 .25rem;}
+    .card p{font-size:.9rem;text-align:center;}
+    .card button{margin-top:auto;background:var(--white);color:var(--primary);border:none;padding:.5rem 1rem;border-radius:4px;cursor:pointer;transition:.2s;}
+    .card button:hover{background:#e0f7ff;}
+    #cart{padding:1rem;background:#f9f9f9;border-top:1px solid #ddd;position:fixed;bottom:0;width:100%;max-height:200px;overflow:auto;}
+    .cart-item{display:flex;justify-content:space-between;margin-bottom:.5rem;}
+    .qty-btn{background:var(--primary);color:var(--white);border:none;padding:0 0.5rem;border-radius:3px;cursor:pointer;}
+    #sobre,footer{padding:2rem;background:var(--white);text-align:center;}
+    footer{background:var(--primary);color:var(--white);}
+    @media(max-width:600px){.hero{padding:2rem 1rem;} .produtos{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Beleza Azul</h1>
+    <nav><a href="#produtos">Produtos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
+  </header>
+
+  <section class="hero">
+    <h2>Realce sua beleza naturalmente</h2>
+    <button onclick="scrollToSection('produtos')">Explorar produtos</button>
+  </section>
+
+  <section id="filters">
+    <label>Filtrar por categoria:
+      <select id="categoryFilter" onchange="applyFilter()">
+        <option value="all">Todos</option>
+        <option value="hidratante">Hidratante</option>
+        <option value="serum">Sérum</option>
+        <!-- adicione mais categorias conforme necessário -->
+      </select>
+    </label>
+  </section>
+
+  <section id="produtos">
+    <h2>Nossos Produtos</h2>
+    <div class="produtos">
+      <!-- Exemplo de card com data-categoria -->
+      <div class="card" data-id="1" data-name="Creme Hidratante" data-price="29.90" data-cat="hidratante">
+        <img src="IMG/creme azul.avif" alt="Creme Hidratante">
+        <h3>Creme Hidratante</h3>
+        <p>Nutrição profunda</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/hidratante em gel.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/de limpeza.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/ESFOLIANTE.jpeg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/esfoliante.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/esfoliante.png" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/Hialurônico.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/HIDRATANTE facial 1.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/kit.png" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/POTE.jpeg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/hidratante em gel.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <div class="card" data-id="2" data-name="Sérum Facial" data-price="49.90" data-cat="serum">
+        <img src="IMG/hidratante em gel.jpg" alt="Sérum Facial">
+        <h3>Sérum Facial</h3>
+        <p>Efeito iluminador</p>
+        <button onclick="addToCart(this)">Comprar</button>
+      </div>
+      <!-- mais cards aqui -->
+    </div>
+  </section>
+
+  <div id="cart"><h3>Carrinho</h3><div id="cart-items"></div><p>Total: R$ <span id="cart-total">0.00</span></p></div>
+
+  <section id="sobre">
+    <h2>Sobre Nós</h2>
+    <p>Somos apaixonados por cosméticos que cuidam de você com harmonia e leveza.</p>
+  </section>
+
+  <footer id="contato">
+    <p>Contato: contato@belezaazul.com</p>
+    <p>© 2025 Beleza Azul</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function updateCartUI() {
+      const container = document.getElementById('cart-items');
+      container.innerHTML = '';
+      let total = 0;
+      Object.values(cart).forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span>${item.name} (${item.qty})</span>
+          <span>R$${(item.price * item.qty).toFixed(2)}</span>
+          <button class="qty-btn" onclick="changeQty('${item.id}',1)">+</button>
+          <button class="qty-btn" onclick="changeQty('${item.id}',-1)">−</button>
+        `;
+        container.appendChild(div);
+        total += item.price * item.qty;
+      });
+      document.getElementById('cart-total').textContent = total.toFixed(2);
+      saveCart();
+    }
+
+    function addToCart(btn) {
+      const card = btn.closest('.card');
+      const id = card.dataset.id, name = card.dataset.name, price = parseFloat(card.dataset.price);
+      cart[id] = cart[id] ? {...cart[id], qty: cart[id].qty + 1} : {id,name,price,qty:1};
+      updateCartUI();
+    }
+
+    function changeQty(id, delta) {
+      if (!cart[id]) return;
+      cart[id].qty += delta;
+      if (cart[id].qty < 1) delete cart[id];
+      updateCartUI();
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({behavior:'smooth'});
+    }
+
+    function applyFilter() {
+      const sel = document.getElementById('categoryFilter').value;
+      document.querySelectorAll('.card').forEach(c => {
+        c.style.display = (sel === 'all' || c.dataset.cat === sel) ? 'flex' : 'none';
+      });
+    }
+
+    // Inicializa
+    updateCartUI();
+    applyFilter();
+  </script>
+</body>
+</html>
